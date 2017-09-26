@@ -2745,6 +2745,9 @@ static void YYTextDrawBorder(YYTextLayout *layout, CGContextRef context, CGSize 
             for (NSInteger ll = l; ll < lMax; ll++) {
                 if (endFound) break;
                 YYTextLine *iLine = lines[ll];
+                if (layout.truncatedLine && layout.truncatedLine.index == ll) {
+                    iLine = layout.truncatedLine;
+                }
                 CFArrayRef iRuns = CTLineGetGlyphRuns(iLine.CTLine);
                 
                 CGRect extLineRect = CGRectNull;
